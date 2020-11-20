@@ -43,6 +43,30 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(category);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken] // prevents submitting from anotehr website using a user credential with hidden contents
+        public IActionResult Upsert(Category category){
+
+            if (ModelState.IsValid)
+            {
+                if(category.Id == 0)
+                {
+                    // create new category
+                    _unitOfWork.Category.Add(category);
+                }
+                else
+                {
+                    // update
+                    _unitOfWork.Category.Update(category);
+                }
+
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(category);
+        }
+
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll() {
