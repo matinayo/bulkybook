@@ -34,13 +34,13 @@ namespace BulkyBook.Models
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public Category category { get; set; }  // this categoryId is a foreign key of Categpry model
+        public Category Category { get; set; }  // this categoryId is a foreign key of Categpry model
 
         [Required]
         public int CoverTypeId { get; set; }
 
         [ForeignKey("CoverTypeId")]
-        public CoverType coverType { get; set; }
+        public CoverType CoverType { get; set; }
 
     }
 }
