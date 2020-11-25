@@ -126,6 +126,7 @@ namespace BulkyBook.Areas.Identity.Pages.Account
                     Name = Input.Name,
                     PhoneNumber = Input.PhoneNumber,
                     Role = Input.Role
+                    
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
