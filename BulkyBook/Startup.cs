@@ -35,6 +35,9 @@ namespace BulkyBook
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IEmailSender, EmailSender>();
+            // next configure email
+            services.Configure<EmailOptions>(Configuration); // what this does is to try to match what is in EmailOption class to appsettings.json class
+
             services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()   // services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -56,7 +59,6 @@ namespace BulkyBook
                 options.ClientSecret = "KXFXIGJ7QrsY34oZAUWpY7xl";
             });
 
-            // next configure email
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
