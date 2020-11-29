@@ -156,14 +156,14 @@ namespace BulkyBook.Areas.Identity.Pages.Account
                     // set admin role by default
                     // await _userManager.AddToRoleAsync(user, SD.Role_Admin);
 
-                    if(user.Role == null)
+                    if (user.Role == null)
                     {
                         // no role selected, register has individaul customers
                         await _userManager.AddToRoleAsync(user, SD.Role_User_Indi);
                     }
                     else
                     {
-                        if(user.CompanyId > 0)
+                        if (user.CompanyId > 0)
                         {
                             await _userManager.AddToRoleAsync(user, SD.Role_User_Comp);
                         }
