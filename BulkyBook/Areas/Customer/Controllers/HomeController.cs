@@ -103,7 +103,7 @@ namespace BulkyBook.Areas.Customer.Controllers
                 HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
 
                 // get object from session
-                var obj = HttpContext.Session.GetObject<ShoppingCart>(SD.ssShoppingCart);
+                // var obj = HttpContext.Session.GetObject<ShoppingCart>(SD.ssShoppingCart);
 
                 return RedirectToAction(nameof(Index));
             }

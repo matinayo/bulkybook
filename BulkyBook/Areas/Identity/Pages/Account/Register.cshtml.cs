@@ -102,7 +102,7 @@ namespace BulkyBook.Areas.Identity.Pages.Account
                 RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User_Indi).Select(x => x.Name).Select(i => new SelectListItem
                 {
                     Text = i,
-                    Value = i
+                    Value = i.ToString()
                 }),
             };
 
@@ -169,12 +169,13 @@ namespace BulkyBook.Areas.Identity.Pages.Account
                         }
                         await _userManager.AddToRoleAsync(user, user.Role);
                     }
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId = user.Id, code = code},
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
@@ -182,7 +183,7 @@ namespace BulkyBook.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email});
                     }
                     else
                     {
@@ -204,6 +205,22 @@ namespace BulkyBook.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
+
+            // populate list here
+            Input = new InputModel()
+            {
+                CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+                // admin can register users
+                RoleList = _roleManager.Roles.Where(u => u.Name != SD.Role_User_Indi).Select(x => x.Name).Select(i => new SelectListItem
+                {
+                    Text = i,
+                    Value = i.ToString()
+                }),
+            };
 
             // If we got this far, something failed, redisplay form
             return Page();
