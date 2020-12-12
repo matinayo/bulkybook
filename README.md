@@ -18,6 +18,14 @@ Admin Users can view users, lock users, add products, add categories and book co
 Admin Username: admin@gmail.com
 Admin Password: Admin123*
 
+<br>
+- content management
+category
+covertype
+product
+company
+
+
 
 
 
