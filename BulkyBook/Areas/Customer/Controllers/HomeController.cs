@@ -30,7 +30,7 @@ namespace BulkyBook.Areas.Customer.Controllers
         public IActionResult Index()
         {
             // IEnumerable of products and retrieve products, categories and covertype
-            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+            IEnumerable<Product> productList = _unitOfWork.Product.GetAll();
 
             // get Id of logged in user
             var claimsIdentity = (ClaimsIdentity)User.Identity;

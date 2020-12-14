@@ -132,26 +132,26 @@ namespace BulkyBook.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
+                    ///// ----- this has been done in the database initializer ---- //////
                     // check if all the roles exists in the database if not, create the role and assign
                     // assign roles to user after dependency injection
-                    if(!await _roleManager.RoleExistsAsync(SD.Role_Admin))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
+                    //if(!await _roleManager.RoleExistsAsync(SD.Role_Admin))
+                    //{
+                    //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
 
-                    }
-                    if (!await _roleManager.RoleExistsAsync(SD.Role_Employee))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
-                    }
-                    if (!await _roleManager.RoleExistsAsync(SD.Role_User_Comp))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Comp));
-                    }
-                    if (!await _roleManager.RoleExistsAsync(SD.Role_User_Indi))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Indi));
-                    }
+                    //}
+                    //if (!await _roleManager.RoleExistsAsync(SD.Role_Employee))
+                    //{
+                    //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
+                    //}
+                    //if (!await _roleManager.RoleExistsAsync(SD.Role_User_Comp))
+                    //{
+                    //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Comp));
+                    //}
+                    //if (!await _roleManager.RoleExistsAsync(SD.Role_User_Indi))
+                    //{
+                    //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Indi));
+                    //}
 
                     // set admin role by default
                     // await _userManager.AddToRoleAsync(user, SD.Role_Admin);
